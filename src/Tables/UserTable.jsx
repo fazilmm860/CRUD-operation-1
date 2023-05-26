@@ -21,7 +21,7 @@ function UserTable(props) {
                             <td>{name}</td>
                             <td>{username}</td>
                             <td>
-                                <button>Delete</button>
+                                <button onClick={()=>props.deleteUser(id)}>Delete</button>
                                 <button>Edit</button>
                             </td>
                         </tr>
