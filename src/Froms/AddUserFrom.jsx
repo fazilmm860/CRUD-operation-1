@@ -21,7 +21,7 @@ function AddUserFrom(props) {
     <label>Name</label>
     <input type="text" className="u-full-width" name='name' value={user.name} onChange={handleChange}/>
     <label>Username</label>
-    <input type="text" className="u-full-width" name='name' value={user.username} onChange={handleChange}/>
+    <input type="text" className="u-full-width" name='username' value={user.username} onChange={handleChange}/>
     <button className="button-primary" type="submit" onClick={handleSubmit}>Add user</button>
   </form>
   )

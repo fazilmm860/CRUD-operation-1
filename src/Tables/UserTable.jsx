@@ -16,13 +16,13 @@ function UserTable(props) {
                 props.users.map(user =>{
                     const {id,name,username}=user;
                     return(
-                        <tr>
+                        <tr key={id}> 
                             <td>{id}</td>
                             <td>{name}</td>
                             <td>{username}</td>
                             <td>
                                 <button onClick={()=>props.deleteUser(id)}>Delete</button>
-                                <button>Edit</button>
+                                <button onClick={()=>props.editUser(id,user)}>Edit</button>
                             </td>
                         </tr>
                     )
