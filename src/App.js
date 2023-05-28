@@ -1,15 +1,17 @@
 
-import React,{useState}from 'react'
+import React,{useState, useEffect}from 'react'
 import userList from './data.js';
 import UserTable from './Tables/UserTable';
 import AddUserFrom from './Froms/AddUserFrom.jsx';
 import EditUserForm from './Froms/EditUserForm.jsx';
+import useAsyncRequest from './hooks/UseAsyncRequest.js';
 
 const App=()=> {
   const [users,setUsers]=useState(userList);
 
   const addUser = user =>{
-    user.id =users.length + 1;
+    // user.id =users.length + 1;
+    user.id=users[users.length - 1].id + 1;
     setUsers([...users,user])
   }
   const deleteUser= (id) => {
@@ -30,6 +32,21 @@ const App=()=> {
     setCurrentUser(initialUser)
     setEditing(false)
   }
+  const [data,loading]=useAsyncRequest(3);
+
+  useEffect(() => {
+    if (data) {
+      const formattedUsers = data.map((obj, i) => {
+        return {
+          id: i,
+          name: obj.name.first,
+          username: obj.name.first + " " + obj.name.last,
+        };
+      });
+      setUsers(formattedUsers);
+    }
+  }, [data]);
+ 
   return (
     <div className="container">
      <h1>Reack CRUD App with Hooks</h1>
@@ -53,13 +70,18 @@ const App=()=> {
      )}
 
      </div> 
-    
+     {loading || !users ? (
+          <p>Loading...</p>
+        ) : (
+     
     <div className="seven column">
-
+    
      <h2>View users</h2>
+     
      <UserTable users={users} deleteUser={deleteUser} editUser={editUser}/>
     
     </div>
+    )}
    </div>
   </div>
   );

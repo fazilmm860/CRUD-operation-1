@@ -13,7 +13,7 @@ const useAsyncRequest = amount => {
                 const json = await response.json();
                 setData(json.results, setLoading(false));
             }catch(err){
-                console.log(`Somthing went wrong fetchin`);
+                console.log(`Somthing went wrong fetchin`,err);
                 setLoading(false)
             }
         }
