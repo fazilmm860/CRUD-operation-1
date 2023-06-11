@@ -14,12 +14,12 @@ const App=()=> {
     user.id=users[users.length - 1].id + 1;
     setUsers([...users,user])
   }
-  const deleteUser= (id) => {
-    setUsers(users.filter(user => user.id !== id))
+  const deleteUser= (roll) => {
+    setUsers(users.filter(user => user.roll !== roll))
   }
   const [editing, setEditing]= useState(false)
 
-  const initialUser= {id: null, name:'', username:''}
+  const initialUser= {roll: null, name:'', clas:''}
   const [currentUser,setCurrentUser]=useState(initialUser)
 
   const editUser=(id,user)=>{
@@ -27,7 +27,7 @@ const App=()=> {
     setCurrentUser(user);
   }
   const updateUser= (newUser)=>{
-    setUsers(users.map(user=>(user.id === currentUser.id ? newUser : user))
+    setUsers(users.map(user=>(user.roll === currentUser.roll ? newUser : user))
     );
     setCurrentUser(initialUser)
     setEditing(false)
@@ -38,9 +38,9 @@ const App=()=> {
     if (data) {
       const formattedUsers = data.map((obj, i) => {
         return {
-          id: i,
-          name: obj.name.first,
-          username: obj.name.first + " " + obj.name.last,
+          roll: obj.roll,
+          name: obj.name,
+          clas: obj.clas ,
         };
       });
       setUsers(formattedUsers);

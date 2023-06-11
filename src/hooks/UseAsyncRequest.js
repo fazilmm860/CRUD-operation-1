@@ -9,9 +9,10 @@ const useAsyncRequest = amount => {
         const fetchData = async () =>{
             try{
                 setLoading(true);
-                const response=await fetch(`https://randomuser.me/api/?results=${amount}`)
+                const response=await fetch(`http://localhost:3030/students`)
                 const json = await response.json();
-                setData(json.results, setLoading(false));
+                console.log("json.results "+json );
+                setData(json, setLoading(false));
             }catch(err){
                 console.log(`Somthing went wrong fetchin`,err);
                 setLoading(false)
